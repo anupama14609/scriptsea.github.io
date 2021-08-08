@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogpost{% endblock title %}
+
+{% block body %}
+
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <h3>{{post.title}}</h3>
+              <div class="card my-2">
+              <span class="card-header"><strong class="d-inline-block text-primary">
+                  Posted By {{post.author}}</strong> 
+                  at {{post.timeStamp}}</span>
+                <div class="card-body">
+                  <p class="card-text mb-auto">{{post.content|safe}}</p>
+                </div>
+              </div>
+          </div>        
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination ">
+        <li class="page-item"><a class="page-link" href="?page={{previous_page_number}}">Prev</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{next_page_number}}">Next</a></li>
+      </ul>
+  </nav> 
+</div>
+ {% endblock %}

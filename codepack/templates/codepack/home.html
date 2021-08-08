@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} BlogHome {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %} 
+
+
+{% block body %}
+<main class="container my-3">
+<div class="row my-2">
+    <div class="col-md-12 px-0">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><a class="nav-link p-0 pt-2 pb-2" href="/blogpdf/create-pdf/">Download Source Code.....</a></strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  <div class="col p-md-5 mb-4 my-3 text-white rounded bg-danger">
+    <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
+    <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
+    <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+</div>
+</div>
+<article>
+  {% for post in allPost %} 
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">   
+      <div class="col p-4 d-flex flex-column position-static">                
+        <h3>{{post.title}}<sup class=" text-primary small"></h3>
+        <p><strong class="d-inline-block text-primary">Posted By {{post.author}}</strong> 
+          at {{post.timeStamp}}</p> 
+      <p>
+      {{post.excert}}
+      <a href="/blog/{{post.slug}}" class="my-2">
+      Continue reading</a> 
+      </p>            
+    </div>  
+    </div>
+    {% endfor %}  
+  </article>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination ">
+    {% if allPost.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{allPost.previous_page_number}}">Prev</a>
+      </li>
+     {% endif %}
+      <li class="page-item"><a class="page-link" href="#">{{allPost.number}}</a></li>
+      
+    {% if allPost.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{allPost.next_page_number}}">Next</a>
+      </li>
+    {% endif %}
+    </ul>
+</nav>
+  </main>   
+
+ {% endblock %}

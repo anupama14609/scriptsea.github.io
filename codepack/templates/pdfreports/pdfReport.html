@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogpost{% endblock title %}
+
+{% block body %}
+<div class="container my-4">
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              {% for post in allPost %}
+               <h3>{{post.sno}}: {{post.title}}<sup class=" text-primary small"></h3>
+                <p><strong class="d-inline-block text-primary">Posted By {{post.author}}</strong> 
+                  at {{post.timeStamp}}</p> 
+              <p>
+              {{post.content|safe}}
+              </p> 
+              <br>
+            {% endfor %} 
+            
+            </div>   
+    </div>
+ 
+</div>
+ {% endblock %}
